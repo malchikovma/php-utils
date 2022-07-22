@@ -1,0 +1,15 @@
+{
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "PhpUtils\\": "src/",
+      "Vendor\\Namespace\\": ""
+    }
+  },
+  "require": {
+    "php": ">7.3"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "9.5.21"
+  }
+}
