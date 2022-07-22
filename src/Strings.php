@@ -8,17 +8,14 @@ class Strings
     /**
      * Find out if string contains one of substrings. Case-insensitive, multi-bite.
      * @param string $string
-     * @param string|string[] $needle
+     * @param string[] $needle
      * @param int $offset
      * @return bool
      *
      * @link https://stackoverflow.com/questions/6284553/using-an-array-as-needles-in-strpos
      */
-    public static function containsOneOf(string $string, $needle, int $offset = 0): bool
+    public static function containsOneOf(string $string, array $needle, int $offset = 0): bool
     {
-        if (!is_array($needle)) {
-            $needle = [$needle];
-        }
         foreach($needle as $query) {
             if (mb_stripos($string, $query, $offset) !== false) {
                 return true;

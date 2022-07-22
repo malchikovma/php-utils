@@ -2,8 +2,7 @@
   "license": "MIT",
   "autoload": {
     "psr-4": {
-      "PhpUtils\\": "src/",
-      "Vendor\\Namespace\\": ""
+      "PhpUtils\\": ["src/", "tests/"]
     }
   },
   "require": {

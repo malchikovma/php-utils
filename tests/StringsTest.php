@@ -1,36 +1,46 @@
 <?php
 
+namespace PhpUtils;
 
-use PhpUtils\Strings;
 use PHPUnit\Framework\TestCase;
-use PhpUtils\StringsAlphabetEnum;
-use PhpUtils\StringsTimeTokens;
 
 class StringsTest extends TestCase
 {
 
-    public function testContainsFindsSubstring(): void
+    /**
+     * @dataProvider containsOneOfProvider
+     */
+    public function testContainsOneOf(string $haystack, array $needle, bool $expected): void
     {
-        $haystack = "abcde";
-        $needle = "ab";
+        $contains = Strings::containsOneOf($haystack, $needle);
 
-        self::assertTrue(Strings::containsOneOf($haystack, $needle));
+        self::assertEquals($expected, $contains);
     }
 
-    public function testContainsAcceptArrayOfNeedles(): void
+    public function containsOneOfProvider(): array
     {
-        $haystack = "abcde";
-        $needles = ["ee", "de"];
-
-        self::assertTrue(Strings::containsOneOf($haystack, $needles));
+        return [
+          "accepts single value" => ["abcde", ["ab"], true],
+          "accepts multiple values" => ["abcde", ["ee", "ab"], true],
+        ];
     }
 
-    public function testGetWords(): void
+    /**
+     * @dataProvider getWordsProvider
+     */
+    public function testGetWords(string $sentence, int $offset, ?int $count, string $expected): void
     {
-        $sentence = "Mom washed the window.";
+        $words = Strings::getWords($sentence, $offset, $count);
 
-        self::assertEquals("the window.", Strings::getWords($sentence, 2));
-        self::assertEquals("Mom washed", Strings::getWords($sentence, 0, 2));
+        self::assertEquals($expected, $words);
+    }
+
+    public function getWordsProvider(): array
+    {
+        return [
+            'get start of the sentence' => ["Mom washed the window.", 0, 2, "Mom washed"],
+            'get rest of the sentence' => ["Mom washed the window.", 2, null, "the window."],
+        ];
     }
 
     public function testCountWordsEN(): void
