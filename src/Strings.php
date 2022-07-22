@@ -14,7 +14,7 @@ class Strings
      *
      * @link https://stackoverflow.com/questions/6284553/using-an-array-as-needles-in-strpos
      */
-    public static function contains(string $string, $needle, int $offset = 0): bool
+    public static function containsOneOf(string $string, $needle, int $offset = 0): bool
     {
         if (!is_array($needle)) {
             $needle = [$needle];

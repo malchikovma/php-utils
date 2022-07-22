@@ -14,7 +14,7 @@ class StringsTest extends TestCase
         $haystack = "abcde";
         $needle = "ab";
 
-        self::assertTrue(Strings::contains($haystack, $needle));
+        self::assertTrue(Strings::containsOneOf($haystack, $needle));
     }
 
     public function testContainsAcceptArrayOfNeedles(): void
@@ -22,7 +22,7 @@ class StringsTest extends TestCase
         $haystack = "abcde";
         $needles = ["ee", "de"];
 
-        self::assertTrue(Strings::contains($haystack, $needles));
+        self::assertTrue(Strings::containsOneOf($haystack, $needles));
     }
 
     public function testGetWords(): void
