@@ -85,4 +85,47 @@ class Arrays
         }
         return null;
     }
+
+    /**
+     * @param callable $callable
+     * @param array $array
+     * @return Mixed|null
+     */
+    public static function find(callable $callable, array $array)
+    {
+        foreach ($array as $item) {
+            if ($callable($item)) {
+                return $item;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * @param $array
+     * @param int $n
+     * @return array
+     */
+    public static function getFirstN($array, int $n = 1): array
+    {
+        $carry = [];
+        foreach (range(0, $n - 1) as $i) {
+            $carry[] = $array[$i];
+        }
+        return $carry;
+    }
+
+    /**
+     * @param $array
+     * @param int $n
+     * @return array
+     */
+    public static function getLastN($array, int $n = 1): array
+    {
+        $carry = [];
+        foreach (range($n - 1, 0) as $i) {
+            $carry[] = $array[count($array) - $i - 1];
+        }
+        return $carry;
+    }
 }
